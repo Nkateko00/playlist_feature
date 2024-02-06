@@ -17,7 +17,7 @@ def input_into_search_bar(context):
     input_search_bar.submit()
     
 def click_playlist(context):
-    playlist_displayed = context.driver.find_element(By.XPATH,"//*[@id='playlist-thumbnails']")
+    playlist_displayed = context.driver.find_element(By.XPATH,"//*[@id='video-title']")
     playlist_displayed.click()
     
 def validate_search_results(context,expected_outcome):

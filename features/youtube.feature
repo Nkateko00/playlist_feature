@@ -5,3 +5,4 @@ Feature: Youtube Search for Vibes Playlist
     Then I click  enter
     Then I should get Vibes playlist displayed 
     Then I click on playlist to open
+    Then I click on selected song

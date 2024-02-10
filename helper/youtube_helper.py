@@ -23,7 +23,7 @@ def click_playlist(context):
 def validate_search_results(context,expected_outcome):
     search_outcome = context.driver.find_element(By.XPATH,"//*[@id='playlist-thumbnails']")
     final_outcome = search_outcome.text
-    #unable to look through element so text
+    #unable to loop through element so text
     #loop through results & return true if there is text else return false
     for outcome in final_outcome:
         if expected_outcome in outcome:

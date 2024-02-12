@@ -16,17 +16,17 @@ def step_impl(context):
 def step_impl(context):
     youtuber_helper.click_search_bar()
 
+@then(u'I click on playlist to open')
+def step_impl(context):
+    youtuber_helper.click_playlist()
+
+@then(u'I click on selected song')
+def step_impl(context):
+    youtuber_helper.click_song()
 
 @then(u'I should get Vibes playlist displayed')
 def step_impl(context):
     expected_outcome = "expected_outcome"
     youtuber_helper.validate_search_results(expected_outcome)
 
-
-@then(u'I click on playlist to open')
-def step_impl(context):
-    youtuber_helper.click_playlist()
     
-@then(u'I click on selected song')
-def step_impl(context):
-    youtuber_helper.click_song()

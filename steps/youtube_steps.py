@@ -8,9 +8,9 @@ youtuber_helper = youtubeHelper()
 def step_impl(context):
    youtuber_helper.youtube_homepage()
 
-@when(u'I search for the vibes playlist on search bar')
-def step_impl(context):
-    youtuber_helper.input_into_search_bar()
+@when(u'I "{search}" for the vibes playlist on search bar')
+def step_impl(context,search):
+    youtuber_helper.input_into_search_bar(search)
 
 @then(u'I click  enter')
 def step_impl(context):

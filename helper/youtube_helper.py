@@ -9,7 +9,7 @@ input_search = XPaths.input_search
 click_playlist = XPaths.click_playlist
 click_song = XPaths.click_song
 playing_song = XPaths.playing_song
-search_string = "Nkateko Nkuna Vibes Playlist"
+
 
 class youtubeHelper:
 
@@ -23,10 +23,10 @@ class youtubeHelper:
         search_bar = context.driver.find_element(By.XPATH,input_search)
         search_bar.click()
         
-    def input_into_search_bar(context):
+    def input_into_search_bar(context,search):
         input_search_bar = context.driver.find_element(By.XPATH,input_search)
         input_search_bar.clear() #clear any existing text
-        input_search_bar.send_keys(search_string)
+        input_search_bar.send_keys(search)
         input_search_bar.submit()
         
     def click_playlist(context):

@@ -37,10 +37,11 @@ class youtubeHelper:
         playlist_displayed.click()
         
     def click_song(context):
-        play_song = context.driver.find_element(By.XPATH,click_song) 
+        play_song = context.driver.find_element(By.XPATH,playing_song) 
         time.sleep(5) 
         #  //*[@id="video-title"] //*[@id="text"]
         play_song.click()
+        time.sleep(15)
         # allow song to play for duration & quit driver
 
     def validate_search_results(context,expected_outcome):

@@ -8,9 +8,5 @@ Feature: Youtube Search for Vibes Playlist
     Then I click on selected song
     Then I should get Vibes playlist displayed 
 
-    # Examples:
-    #     | search | 
-    #     | Nkateko Nkuna Vibes Playlist  | 
-
 
 

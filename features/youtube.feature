@@ -1,6 +1,6 @@
 Feature: Youtube Search for Vibes Playlist
 
-    Scenario Outline: Starting youtube & searching for vibes playlist
+    Scenario: Starting youtube & searching for vibes playlist
     Given I am on the Youtube homepage
     When I "<search>" for the vibes playlist on search bar
     Then I click  enter
@@ -8,9 +8,9 @@ Feature: Youtube Search for Vibes Playlist
     Then I click on selected song
     Then I should get Vibes playlist displayed 
 
-    Examples:
-        | search | 
-        | Nkateko Nkuna Vibes Playlist  | 
+    # Examples:
+    #     | search | 
+    #     | Nkateko Nkuna Vibes Playlist  | 
 
 
 

@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 from xpath_paths import XPaths
+import sqlite3
 
 #Xpaths here for now will fix
 youtube_url = XPaths.youtube_url
@@ -18,6 +19,18 @@ class youtubeHelper:
         context.driver.implicitly_wait(10)
         #allow elements to be found on dom
         context.driver.get(youtube_url)
+    def db_connection(context):
+        db_file = 'test_data.db'
+        db_connect = sqlite3.connect(db_file)
+        cursor = db_connect.cursor()
+        
+        cursor.execute("SELECT * FROM inputs")
+        test_data = cursor.fetchall()
+        
+        for row in test_data:
+            return row
+        
+        cursor
         
     def click_search_bar(context):
         search_bar = context.driver.find_element(By.XPATH,input_search)
@@ -25,9 +38,10 @@ class youtubeHelper:
         search_bar.click()
         
     def input_into_search_bar(context,search):
+        db_data = context.db_connection()
         input_search_bar = context.driver.find_element(By.XPATH,input_search)
         input_search_bar.clear() #clear any existing text
-        input_search_bar.send_keys(search)
+        input_search_bar.send_keys(db_data[1])
         time.sleep(5) 
         input_search_bar.submit()
         

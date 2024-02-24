@@ -30,8 +30,6 @@ class youtubeHelper:
         for row in test_data:
             return row
         
-        cursor
-        
     def click_search_bar(context):
         search_bar = context.driver.find_element(By.XPATH,input_search)
         time.sleep(5) 

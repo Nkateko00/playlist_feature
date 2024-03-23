@@ -19,6 +19,7 @@ class youtubeHelper:
         self.driver.implicitly_wait(10)
         #allow elements to be found on dom
         self.driver.get(youtube_url)
+        
     def db_connection(self):
         db_file = 'test_data.db'
         db_connect = sqlite3.connect(db_file)
@@ -35,7 +36,7 @@ class youtubeHelper:
         time.sleep(5) 
         search_bar.click()
         
-    def input_into_search_bar(self,search):
+    def input_into_search_bar(self,search):  
         db_data = self.db_connection()
         input_search_bar = self.driver.find_element(By.XPATH,input_search)
         input_search_bar.clear() #clear any existing text
@@ -53,7 +54,7 @@ class youtubeHelper:
         time.sleep(5) 
         #  //*[@id="video-title"] //*[@id="text"]
         play_song.click()
-        time.sleep(15)
+        time.sleep(30)
         # allow song to play for duration & quit driver
 
     def validate_search_results(self,expected_outcome):

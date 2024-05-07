@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 from xpath_paths import XPaths
 import sqlite3
@@ -32,33 +34,37 @@ class youtubeHelper:
             return row
         
     def click_search_bar(self):
-        search_bar = self.driver.find_element(By.XPATH,input_search)
-        time.sleep(5) 
+        search_bar = WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located((By.XPATH,input_search)))
         search_bar.click()
         
     def input_into_search_bar(self,search):  
         db_data = self.db_connection()
-        input_search_bar = self.driver.find_element(By.XPATH,input_search)
-        input_search_bar.clear() #clear any existing text
+        input_search_bar = WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located((By.XPATH, input_search))
+        )
+        input_search_bar.clear()
         input_search_bar.send_keys(db_data[1])
-        time.sleep(5) 
         input_search_bar.submit()
         
     def click_playlist(self):
-        playlist_displayed = self.driver.find_element(By.XPATH,click_playlist)
-        time.sleep(5) 
+        playlist_displayed = WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located((By.XPATH,click_playlist))
+        )
         playlist_displayed.click()
         
     def click_song(self):
-        play_song = self.driver.find_element(By.XPATH,playing_song) 
-        time.sleep(5) 
-        #  //*[@id="video-title"] //*[@id="text"]
+        play_song = WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located((By.XPATH,playing_song))
+        )
         play_song.click()
         time.sleep(30)
         # allow song to play for duration & quit driver
 
     def validate_search_results(self,expected_outcome):
-        search_outcome = self.driver.find_element(By.XPATH,playing_song)
+        search_outcome = WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located((By.XPATH,playing_song))
+        )
         time.sleep(5) 
         final_outcome = search_outcome.text
         #unable to loop through element so text
@@ -68,6 +74,9 @@ class youtubeHelper:
                 return True
             else:
                return False    
+           
+
+        
         
         
 

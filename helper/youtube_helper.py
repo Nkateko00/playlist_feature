@@ -71,7 +71,7 @@ class youtubeHelper:
             EC.visibility_of_element_located((By.XPATH,lex_podcast))
         )
         open_podcast.click()
-        time.sleep(30)
+        time.sleep(50)
         
     def click_playlist(self):
         playlist_displayed = WebDriverWait(self.driver,10).until(

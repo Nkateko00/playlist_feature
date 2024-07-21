@@ -12,6 +12,8 @@ input_search = XPaths.input_search
 click_playlist = XPaths.click_playlist
 click_song = XPaths.click_song
 playing_song = XPaths.playing_song
+lex_podcast = XPaths.lex_podcast
+podcast_title = XPaths.podcast_heading
 
 
 class youtubeHelper:
@@ -22,6 +24,11 @@ class youtubeHelper:
         #allow elements to be found on dom
         self.driver.get(youtube_url)
         
+    def podcast_homepage(self):
+        self.driver = webdriver.Chrome()
+        self.driver.implicitly_wait(10)
+        self.driver.get(youtube_url)
+        
     def db_connection(self):
         db_file = 'test_data.db'
         db_connect = sqlite3.connect(db_file)
@@ -29,9 +36,11 @@ class youtubeHelper:
         
         cursor.execute("SELECT * FROM inputs")
         test_data = cursor.fetchall()
-        
+        all_rows = []
         for row in test_data:
-            return row
+            all_rows.append(row)
+        return all_rows
+        
         
     def click_search_bar(self):
         search_bar = WebDriverWait(self.driver,10).until(
@@ -40,12 +49,29 @@ class youtubeHelper:
         
     def input_into_search_bar(self,search):  
         db_data = self.db_connection()
+        search_data = db_data[0][1]
         input_search_bar = WebDriverWait(self.driver,10).until(
             EC.visibility_of_element_located((By.XPATH, input_search))
         )
         input_search_bar.clear()
-        input_search_bar.send_keys(db_data[1])
+        input_search_bar.send_keys(search_data)
         input_search_bar.submit()
+        
+    def podcast_input(self,lookup):
+        db_data = self.db_connection()
+        search_data = db_data[1][1]
+        input_podcast = WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located((By.XPATH,input_search)))
+        input_podcast.clear()
+        input_podcast.send_keys(search_data)
+        input_podcast.submit()
+        
+    def click_podcast(self):
+        open_podcast = WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located((By.XPATH,lex_podcast))
+        )
+        open_podcast.click()
+        time.sleep(30)
         
     def click_playlist(self):
         playlist_displayed = WebDriverWait(self.driver,10).until(
@@ -58,22 +84,28 @@ class youtubeHelper:
             EC.visibility_of_element_located((By.XPATH,playing_song))
         )
         play_song.click()
-        time.sleep(30)
+        time.sleep(50)
         # allow song to play for duration & quit driver
 
-    def validate_search_results(self,expected_outcome):
+    def validate_search_results(self):
         search_outcome = WebDriverWait(self.driver,10).until(
             EC.visibility_of_element_located((By.XPATH,playing_song))
         )
-        time.sleep(5) 
-        final_outcome = search_outcome.text
-        #unable to loop through element so text
-        #loop through results & return true if there is text else return false
-        for outcome in final_outcome:
-            if expected_outcome in outcome:
+        if search_outcome:
                 return True
-            else:
-               return False    
+        else:
+               return False  
+           
+    def verify_podcast_playing(self):
+        podcast_playing = WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located((By.XPATH,podcast_title))
+        )
+        if podcast_playing:
+            return True
+        else:
+            return False
+           
+    
            
 
         
@@ -82,6 +114,7 @@ class youtubeHelper:
 
         
         
+       
         
         
         

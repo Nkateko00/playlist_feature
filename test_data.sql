@@ -3,6 +3,6 @@
 --     search TEXT
 --     );
 -- INSERT INTO inputs (id,search)
--- VALUES (1,'Nkateko Nkuna Vibes Playlist ');
+-- VALUES (2,'Lex Fridman Podcast ');
 
 SELECT * FROM inputs

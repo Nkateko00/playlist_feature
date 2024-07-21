@@ -26,7 +26,24 @@ def step_impl(context):
 
 @then(u'I should get Vibes playlist displayed')
 def step_impl(context):
-    expected_outcome = "expected_outcome"
-    youtuber_helper.validate_search_results(expected_outcome)
+   
+    youtuber_helper.validate_search_results()
 
+@given(u'I am on the youtube landing page')
+def step_impl(context):
+    youtuber_helper.youtube_homepage()
+
+
+@when(u'I "{lookup}" Lex Fridmans podcast')
+def step_impl(context,lookup):
+    youtuber_helper.podcast_input(lookup)
+
+@then(u'I click on the podcast to open')
+def step_impl(context):
+    youtuber_helper.click_podcast()
+
+
+@then(u'I verify Episode 435 is playing on youtube')
+def step_impl(context):
+    youtuber_helper.verify_podcast_playing()
     

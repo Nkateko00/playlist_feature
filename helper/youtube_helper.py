@@ -24,11 +24,6 @@ class youtubeHelper:
         #allow elements to be found on dom
         self.driver.get(youtube_url)
         
-    def podcast_homepage(self):
-        self.driver = webdriver.Chrome()
-        self.driver.implicitly_wait(10)
-        self.driver.get(youtube_url)
-        
     def db_connection(self):
         db_file = 'test_data.db'
         db_connect = sqlite3.connect(db_file)
@@ -37,6 +32,7 @@ class youtubeHelper:
         cursor.execute("SELECT * FROM inputs")
         test_data = cursor.fetchall()
         all_rows = []
+        #create empty array to store data returned from for loop
         for row in test_data:
             all_rows.append(row)
         return all_rows

@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Jul 24 20:25:09 SAST 2024","Wed Jul 24 20:26:23 SAST 2024","73673","","","","","","Starting youtube & searching for Lex Fridmans podcast",""
+"passed","Wed Jul 24 20:21:20 SAST 2024","Wed Jul 24 20:25:09 SAST 2024","229356","","","","","","Starting youtube & searching for vibes playlist",""

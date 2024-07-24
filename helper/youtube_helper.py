@@ -68,6 +68,7 @@ class youtubeHelper:
         )
         open_podcast.click()
         time.sleep(50)
+        # allow playlist to play for duration & quit driver
         
     def click_playlist(self):
         playlist_displayed = WebDriverWait(self.driver,10).until(
